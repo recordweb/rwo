@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RecordWeb Ontology (RWO)</title>
+  <link rel="alternate" type="text/turtle" href="ontology.ttl">
+  <meta name="description" content="RDF/OWL vocabulary for the RecordWeb Protocol (RWP) and RecordWeb Concept (RWC).">
+  <style>
+    body { font-family: sans-serif; max-width: 60em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+    code, pre { background: #f4f4f4; padding: 0.15em 0.4em; border-radius: 3px; }
+    pre { padding: 1em; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; vertical-align: top; }
+    th { background: #f4f4f4; }
+    .notice { font-size: 0.9em; color: #555; border-left: 3px solid #ccc; padding-left: 1em; margin: 1.5em 0; }
+  </style>
+</head>
+<body>
+
+<p class="notice">
+  Copyright © 2026 the Contributors to the RecordWeb Ontology Specification,
+  published by the W3C RecordWeb Community Group under the
+  <a href="https://www.w3.org/community/about/process/cla-deed/">W3C Community
+  Contributor License Agreement (CLA)</a>. A human-readable summary is available.
+</p>
+
+<h1>RecordWeb Ontology (RWO)</h1>
+<p><strong>Namespace:</strong> <code>https://w3id.org/recordweb/ontology#</code></p>
+<p><strong>Version:</strong> 0.1.0 &middot;
+  <strong>Status:</strong> Draft &middot;
+  <a href="ontology.ttl">Turtle source</a></p>
+
+<p>
+  RWO defines the RDF/OWL vocabulary used for semantic interoperability of the
+  <a href="https://recordweb.github.io/rwp/">RecordWeb Protocol (RWP)</a> and the
+  <a href="https://recordweb.github.io/rwc/">RecordWeb Concept (RWC)</a>.
+  The central class <code>rw:Record</code> is a specialization of
+  <a href="https://www.w3.org/TR/prov-o/#Entity"><code>prov:Entity</code></a>
+  from the W3C PROV-O ontology.
+</p>
+
+<h2>Namespace prefix</h2>
+<pre>@prefix rw:   &lt;https://w3id.org/recordweb/ontology#&gt; .
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .</pre>
+
+<h2>Classes</h2>
+<table>
+  <tr><th>Term</th><th>Label</th><th>Description</th></tr>
+  <tr><td><code>rw:Record</code></td><td>Record</td><td>Specialization of prov:Entity; the primary term of RWP.</td></tr>
+  <tr><td><code>rw:RecordState</code></td><td>Record State</td><td>Lifecycle state of a Record.</td></tr>
+  <tr><td><code>rw:RecordType</code></td><td>Record Type</td><td>Type classification of a Record.</td></tr>
+  <tr><td><code>rw:Schema</code></td><td>Schema</td><td>Schema governing a Record's payload structure.</td></tr>
+  <tr><td><code>rw:IntegrityEvidence</code></td><td>Integrity Evidence</td><td>Evidence that a Record has not been altered.</td></tr>
+</table>
+
+<h2>Properties</h2>
+<table>
+  <tr><th>Term</th><th>Domain</th><th>Range</th><th>Description</th></tr>
+  <tr><td><code>rw:identity</code></td><td>rw:Record</td><td>xsd:string</td><td>Unique identifier of a Record.</td></tr>
+  <tr><td><code>rw:version</code></td><td>rw:Record</td><td>xsd:string</td><td>Version identifier of a Record.</td></tr>
+  <tr><td><code>rw:hasPayload</code></td><td>rw:Record</td><td>&mdash;</td><td>Relates a Record to its payload resource.</td></tr>
+  <tr><td><code>rw:hasSchema</code></td><td>rw:Record</td><td>rw:Schema</td><td>Relates a Record to its Schema.</td></tr>
+  <tr><td><code>rw:hasState</code></td><td>rw:Record</td><td>rw:RecordState</td><td>Relates a Record to its RecordState.</td></tr>
+  <tr><td><code>rw:hasType</code></td><td>rw:Record</td><td>rw:RecordType</td><td>Relates a Record to its RecordType.</td></tr>
+  <tr><td><code>rw:hasIntegrityEvidence</code></td><td>rw:Record</td><td>rw:IntegrityEvidence</td><td>Relates a Record to its IntegrityEvidence.</td></tr>
+</table>
+
+<h2>Example</h2>
+<pre>&lt;https://example.org/records/123&gt;
+    a rw:Record, prov:Entity ;
+    rw:identity "123" ;
+    rw:version "1" ;
+    rw:hasPayload &lt;https://example.org/records/123/payload&gt; .</pre>
+
+<h2>Related documents</h2>
+<ul>
+  <li><a href="https://recordweb.github.io/rwp/">RecordWeb Protocol (RWP)</a> &mdash; normative specification</li>
+  <li><a href="https://recordweb.github.io/rwc/">RecordWeb Concept (RWC)</a> &mdash; Community Group Report</li>
+  <li><a href="https://github.com/recordweb/ontology">RecordWeb Ontology (RWO) source repository</a></li>
+</ul>
+
+</body>
+</html>

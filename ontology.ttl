@@ -1,0 +1,123 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rw:      <https://w3id.org/recordweb/ontology#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# Ontology metadata
+#################################################################
+
+<https://w3id.org/recordweb/ontology>
+    a owl:Ontology ;
+    dcterms:title "RecordWeb Ontology (RWO)"@en ;
+    dcterms:description
+        "RDF/OWL vocabulary for semantic interoperability of the RecordWeb Protocol (RWP) and RecordWeb Concept (RWC)."@en ;
+    dcterms:publisher "W3C RecordWeb Community Group" ;
+    dcterms:license <https://www.w3.org/copyright/software-license-2023/> ;
+    dcterms:references
+        <https://recordweb.github.io/rwp/> ,
+        <https://recordweb.github.io/rwc/> ;
+    owl:versionInfo "0.1.0" ;
+    rdfs:seeAlso <https://www.w3.org/TR/prov-o/> .
+
+#################################################################
+# Classes
+#################################################################
+
+rw:Record
+    a owl:Class ;
+    rdfs:label "Record"@en ;
+    rdfs:comment
+        "A Record as defined by [ISO 15489-1], clause 3.14, and specialized for the RecordWeb Protocol (RWP). A Record MUST have identity, structure, payload, type, schema, state, version and integrity evidence as required by RWP."@en ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:RecordState
+    a owl:Class ;
+    rdfs:label "Record State"@en ;
+    rdfs:comment "The lifecycle state of a Record (e.g. draft, finlized)."@en ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:RecordType
+    a owl:Class ;
+    rdfs:label "Record Type"@en ;
+    rdfs:comment "The type classification of a Record as defined by RWP."@en ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:Schema
+    a owl:Class ;
+    rdfs:label "Schema"@en ;
+    rdfs:comment "The schema that governs the structure of a Record's payload."@en ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:IntegrityEvidence
+    a owl:Class ;
+    rdfs:label "Integrity Evidence"@en ;
+    rdfs:comment "Evidence (e.g. cryptographic proof) that a Record has not been altered, as required by RWP."@en ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+#################################################################
+# Object properties
+#################################################################
+
+rw:hasPayload
+    a owl:ObjectProperty ;
+    rdfs:label "has payload"@en ;
+    rdfs:comment "Relates a Record to its payload resource."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:hasSchema
+    a owl:ObjectProperty ;
+    rdfs:label "has schema"@en ;
+    rdfs:comment "Relates a Record to the Schema governing its payload structure."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:range rw:Schema ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:hasState
+    a owl:ObjectProperty ;
+    rdfs:label "has state"@en ;
+    rdfs:comment "Relates a Record to its current RecordState."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:range rw:RecordState ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:hasType
+    a owl:ObjectProperty ;
+    rdfs:label "has type"@en ;
+    rdfs:comment "Relates a Record to its RecordType."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:range rw:RecordType ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:hasIntegrityEvidence
+    a owl:ObjectProperty ;
+    rdfs:label "has integrity evidence"@en ;
+    rdfs:comment "Relates a Record to the IntegrityEvidence required by RWP."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:range rw:IntegrityEvidence ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+#################################################################
+# Datatype properties
+#################################################################
+
+rw:identity
+    a owl:DatatypeProperty ;
+    rdfs:label "identity"@en ;
+    rdfs:comment "The unique identifier of a Record as required by RWP."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
+
+rw:version
+    a owl:DatatypeProperty ;
+    rdfs:label "version"@en ;
+    rdfs:comment "Version identifier of a Record."@en ;
+    rdfs:domain rw:Record ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/recordweb/ontology> .
